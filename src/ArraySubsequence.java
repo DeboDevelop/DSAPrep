@@ -3,25 +3,27 @@ public class ArraySubsequence
 {
   public static boolean compute(int arr1[], int arr2[])
   {
-    //Set<Integer> hset = new HashSet<Integer>(Arrays.asList(arr1));
-    Set<Integer> hset = new HashSet<Integer>();
-    for(int i=0; i<arr1.length; i++)
+    LinkedList<Integer> stack = new LinkedList<Integer>();
+    for(int i=0; i<arr2.length; i++)
     {
-      hset.add(arr1[i]);
+      stack.push(arr2[i]);
     }
-    for(int i=0;i<arr2.length; i++)
+    for(int i=arr1.length-1;i>=0;i--)
     {
-      if(hset.contains(arr2[i]) == false)
-      {
-        return false;
-      }
+     if(stack.peek() == arr1[i])
+     {
+      stack.pop();
+     }
     }
-    return true;
+    if(stack.size() == 0)
+      return true;
+    else
+      return false;
   }
   public static void main(String args[])
   {
-    int arr1[] = {11, 1, 13, 21, 3, 7};
-    int arr2[] = {11, 3, 7, 1};
+    int arr1[] = {100, 200, 1, 900, 800, 2};
+    int arr2[] = {1, 2};
     boolean res = compute(arr1, arr2);
     if(res == true)
     {
