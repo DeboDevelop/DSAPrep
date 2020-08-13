@@ -3,17 +3,21 @@ public class ArraySubsequence
 {
   public static boolean compute(int arr1[], int arr2[])
   {
-    LinkedList<Integer> stack = new LinkedList<Integer>();
+    Deque<Integer> stack = new ArrayDeque<Integer>();
     for(int i=0; i<arr2.length; i++)
     {
       stack.push(arr2[i]);
     }
-    for(int i=arr1.length-1;i>=0;i--)
+    for(int i=arr1.length-1; i>=0; i--)
     {
-     if(stack.peek() == arr1[i])
-     {
-      stack.pop();
-     }
+        try {
+            if(stack.peek() == arr1[i])
+             {
+              stack.pop();
+             }
+        } catch(Exception e) {
+            
+        }
     }
     if(stack.size() == 0)
       return true;
