@@ -13,10 +13,10 @@ public class EqualSum
 
         boolean t[][] = new boolean[arr.length+1][sum+1];
         int i, j;
-        for (j=0;j<sum+1;j++)
-            t[0][j] = false;
         for (i=0;i<arr.length+1;i++)
             t[i][0] = true;
+        for (j=1;j<sum+1;j++)
+            t[0][j] = false;
         
         for (i=1;i<arr.length+1;i++) {
             for (j=1;j<sum+1;j++) {

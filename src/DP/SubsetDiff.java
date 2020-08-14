@@ -1,7 +1,12 @@
-public class SubsetSum
+public class SubsetDiff
 {
-    public static boolean subsetsum(int arr[], int sum)
+    public static int subsetsum(int arr[])
     {
+        int sum=0;
+
+        for (int i=0;i<arr.length;i++)
+            sum+=arr[i];
+
         boolean t[][] = new boolean[arr.length+1][sum+1];
         int i, j;
         for (i=0;i<arr.length+1;i++)
@@ -17,11 +22,20 @@ public class SubsetSum
                     t[i][j] = t[i-1][j] || t[i-1][j-arr[i-1]];
             }
         }
-        return t[arr.length][sum];
+        
+        int diff=Integer.MAX_VALUE;
+        for (j=sum/2; j>=0; j--) 
+        { 
+            if (t[arr.length][j] == true) 
+            { 
+                diff = sum-2*j; 
+                break; 
+            } 
+        } 
+        return diff; 
     }
     public static void main(String[] args) {
-        int arr[] = {2, 3, 4, 8, 10};
-        int sum = 19;
-        System.out.println(subsetsum(arr, sum));
+        int arr[] = {1, 1, 2, 8};
+        System.out.println(subsetsum(arr));
     }
 }

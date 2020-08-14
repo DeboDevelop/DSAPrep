@@ -1,27 +1,27 @@
-public class SubsetSum
+public class CountSubsetSum
 {
-    public static boolean subsetsum(int arr[], int sum)
+    public static int subsetsum(int arr[], int sum)
     {
-        boolean t[][] = new boolean[arr.length+1][sum+1];
+        int t[][] = new int[arr.length+1][sum+1];
         int i, j;
         for (i=0;i<arr.length+1;i++)
-            t[i][0] = true;
+            t[i][0] = 1;
         for (j=1;j<sum+1;j++)
-            t[0][j] = false;
-
+            t[0][j] = 0;
+        
         for (i=1;i<arr.length+1;i++) {
-            for (j=0;j<sum+1;j++) {
+            for (j=1;j<sum+1;j++) {
                 if( arr[i-1] > j)
                     t[i][j] = t[i-1][j];
                 else
-                    t[i][j] = t[i-1][j] || t[i-1][j-arr[i-1]];
+                    t[i][j] = t[i-1][j] + t[i-1][j-arr[i-1]];
             }
         }
         return t[arr.length][sum];
     }
     public static void main(String[] args) {
-        int arr[] = {2, 3, 4, 8, 10};
-        int sum = 19;
+        int arr[] = {3, 3, 3, 3};
+        int sum = 6;
         System.out.println(subsetsum(arr, sum));
     }
 }
