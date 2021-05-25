@@ -13,7 +13,7 @@ public class CoinChangeMin
                 if(coin[j]<=i) {
                     int res = t[i - coin[j]]; 
                 if(res != Integer.MAX_VALUE && res + 1 < t[i]) 
-                       t[i] = res + 1; 
+                    t[i] = res + 1; 
                 }
             }
         }
